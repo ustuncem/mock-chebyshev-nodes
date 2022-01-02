@@ -34,20 +34,18 @@ class Parser:
             DataFrame: [Pandas DataFrame object]
         """
 
-        self.raw_data = self.raw_data.set_index("Day")
 
         if len(columns_to_drop) > 0:
             self.raw_data.drop(columns = columns_to_drop, inplace=True)
 
-        
-        self.raw_data.fillna(0)
+        self.raw_data = self.raw_data.dropna(axis="columns", how="all")
+        self.raw_data = self.raw_data.fillna(0)
 
         #Sort Data (ASC)
-        self.raw_data = self.raw_data.sort_index(ascending=True)
+        self.raw_data = self.raw_data.sort_values(by=["Day"], ascending=False)
         
         # Cleaned Data
         return self.raw_data
 
 
 data = Parser("./assets/AVAX.xlsx")
-print(data.clean_data)
