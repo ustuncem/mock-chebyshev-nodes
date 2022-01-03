@@ -42,7 +42,7 @@ class Parser:
         self.raw_data = self.raw_data.fillna(0)
 
         #Sort Data (ASC)
-        self.raw_data = self.raw_data.sort_values(by=["Day"], ascending=False)
+        self.raw_data = self.raw_data.sort_values(by=["Day"], ascending=True)
         
         # Cleaned Data
         return self.raw_data
