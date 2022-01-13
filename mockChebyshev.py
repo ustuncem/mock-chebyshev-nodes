@@ -31,12 +31,9 @@ class MockChebyshev:
 
         return x_mockcheb
 
-    def ibrahimoglu(self, n):
-    
-        a = 1
-        b = 85
+    def ibrahimoglu(self, n, start = 1, end = 85):
 
-        x_cheb = np.array([0.5 *(a + b) + 0.5 * (a - b) * np.cos(np.pi * j / (n-1)) for j in range(n)])
+        x_cheb = np.array([0.5 *(start + end) + 0.5 * (start - end) * np.cos(np.pi * j / (n-1)) for j in range(n)])
         
         h = []
         for j in range(n - 1):
@@ -48,7 +45,7 @@ class MockChebyshev:
         for j in range(n - 1):
             S.append(np.ceil(h[j] / hmin) + S[j])
         
-        h_alpha = (b - a) / S[n-1]
+        h_alpha = (end - start) / S[n-1]
         mockcheb_first = x_cheb[0]
         mockcheb_nodes = np.array([mockcheb_first], float)
 
