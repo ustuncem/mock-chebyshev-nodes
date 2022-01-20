@@ -57,7 +57,7 @@ def lagrange_errors_graph():
     plt.show()
 
 def lagrange_mockcheb_graph(): 
-    xplt = mockcheb.boyd(15, len(data.clean_data["Average Closing"]))
+    xplt = mockcheb.boyd()
     yplt = np.array([data.clean_data["Average Closing"][int(i)] for i in xplt])
     yplt_vals = np.array([], float)
 
@@ -85,7 +85,7 @@ def lagrange_boyd_errors_graph():
     plt.xlabel("Days")
     plt.ylabel("Error")
 
-    xplt = mockcheb.boyd(15, len(data.clean_data["Average Closing"]))
+    xplt = mockcheb.boyd()
     yplt = np.array([data.clean_data["Average Closing"][int(i)] for i in xplt])
 
 
@@ -96,11 +96,11 @@ def lagrange_boyd_errors_graph():
         y_axis = np.append(y_axis, lagrange.values[int(i)] - lagrange.polynomial_mockcheb(i, xplt, yplt))
     
     plt.xticks(xplt + 1)
-    plt.bar(x_axis, np.round(y_axis)+0.05, color="#E51A7C")
+    plt.bar(x_axis + 1, np.round(y_axis)+0.05, color="#E51A7C")
     plt.show()
 
 def lagrange_mockcheb_ibrahimoglu_graph(): 
-    xplt = mockcheb.ibrahimoglu(15) - 1
+    xplt = mockcheb.ibrahimoglu() - 1
     yplt = np.array([data.clean_data["Average Closing"][int(i)] for i in xplt])
     yplt_vals = np.array([], float)
 
@@ -128,7 +128,7 @@ def lagrange_ibrahimoglu_errors_graph():
     plt.xlabel("Days")
     plt.ylabel("Error")
 
-    xplt = mockcheb.ibrahimoglu(15) - 1
+    xplt = mockcheb.ibrahimoglu() - 1
     yplt = np.array([data.clean_data["Average Closing"][int(i)] for i in xplt])
 
 

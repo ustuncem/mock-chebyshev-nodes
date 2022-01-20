@@ -1,17 +1,24 @@
+import csv
 import time
-from mockChebyshev import mockcheb
+
+import numpy as np
+from mockChebyshev import MockChebyshev
+from Parser import csv_data
 # Measure elapsed time
+
+#Init
+mockcheb = MockChebyshev(list(csv_data.clean_data["close"].to_dict().keys()), 101)
 
 # Boyd
 start = time.time()
-mockcheb.boyd(101, 4099)
+boyd = mockcheb.boyd()
 end = time.time()
 
 print("Boyd's algorithm, elapsed time: %s" %(end - start))
 
 # İbrahimoğlu
 start = time.time()
-mockcheb.ibrahimoglu(101, 1, 4099)
+ibrahimoglu = mockcheb.ibrahimoglu()
 end = time.time()
 
 print("Ibrahimoglu's algorithm, elapsed time: %s" %(end - start))
