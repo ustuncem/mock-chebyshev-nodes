@@ -5,8 +5,16 @@ import time
 from Parser import data
 
 class MockChebyshev:
+    """ MockChebyshev Method Container Class
+    """
 
-    def __init__(self, dataset, point_count_cheb = 15) -> None:
+    def __init__(self, dataset: list, point_count_cheb: int = 15) -> None:
+        """Constructor
+
+        Args:
+            dataset (list): x-values of the data. Should be equally distanced
+            point_count_cheb (int, optional): (n+1) number of points, degree of the mock-Chebyshev polynomial will be n. Defaults to 15.
+        """
         self.x_cheb_length = point_count_cheb
         self.x_equi_length = len(dataset)
         self.start = dataset[0]
@@ -16,7 +24,14 @@ class MockChebyshev:
                                     for j in range(point_count_cheb)])
         self.x_equi = np.array([(-1 + 2* k / (self.x_equi_length - 1)) for k in range(self.x_equi_length)])
 
-    def ibrahimoglu(self):       
+    def ibrahimoglu(self) -> list:
+        """ İbrahimoğlu's Mock-Chebyshev node selection algorithm
+
+        TODO: Return type should be a NumPy Array. Also degree could be set on the function itself, rather than the constructor. 
+
+        Returns:
+            list: Selected mock-Chebyshev nodes of the self.dataset.
+        """
         degree = self.x_cheb_length - 1
 
         i = j = k = 1 
@@ -43,6 +58,11 @@ class MockChebyshev:
         return np.round(mockcheb)
         
     def boyd(self):
+        """ Boyd's Mock-Chebyshev node selection algorithm
+
+        Returns:
+            NumPy List: Selected mock-Chebyshev nodes of the self.dataset.
+        """
         x_mockcheb = np.array([])
 
         for j in self.x_cheb:
