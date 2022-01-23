@@ -1,8 +1,7 @@
-from unittest import mock
 import numpy as np
 from pandas.core.frame import DataFrame
-import time
-from Parser import data
+from .Parser import data
+
 
 class MockChebyshev:
     """ MockChebyshev Method Container Class
@@ -19,10 +18,11 @@ class MockChebyshev:
         self.x_equi_length = len(dataset)
         self.start = dataset[0]
         self.end = dataset[-1]
-        self.x_cheb = np.array([0.5 * (self.start + self.end + 2) + 0.5 
-                                    * (self.start - self.end) * np.cos(np.pi * j / (point_count_cheb - 1)) 
-                                    for j in range(point_count_cheb)])
-        self.x_equi = np.array([(-1 + 2* k / (self.x_equi_length - 1)) for k in range(self.x_equi_length)])
+        self.x_cheb = np.array([0.5 * (self.start + self.end + 2) + 0.5
+                                    * (self.start - self.end) * np.cos(np.pi * j / (point_count_cheb - 1))
+                                for j in range(point_count_cheb)])
+        self.x_equi = np.array(
+            [(-1 + 2 * k / (self.x_equi_length - 1)) for k in range(self.x_equi_length)])
 
     def ibrahimoglu(self) -> list:
         """ İbrahimoğlu's Mock-Chebyshev node selection algorithm
@@ -34,13 +34,13 @@ class MockChebyshev:
         """
         degree = self.x_cheb_length - 1
 
-        i = j = k = 1 
+        i = j = k = 1
         h = []
 
         while i <= degree:
             h.append(self.x_cheb[i] - self.x_cheb[i-1])
             i = i + 1
-        
+
         h_min = min(h)
         S = [0]
 
@@ -56,7 +56,7 @@ class MockChebyshev:
             k = k + 1
 
         return np.round(mockcheb)
-        
+
     def boyd(self):
         """ Boyd's Mock-Chebyshev node selection algorithm
 
@@ -71,7 +71,9 @@ class MockChebyshev:
                 temp.append(abs(j - k))
 
             x_mockcheb = np.append(x_mockcheb, min(temp))
-            
+
         return np.round(x_mockcheb)
 
-mockcheb = MockChebyshev(list(data.clean_data["Average Closing"].to_dict().keys()), 15)
+
+mockcheb = MockChebyshev(
+    list(data.clean_data["Average Closing"].to_dict().keys()), 15)
