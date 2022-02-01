@@ -80,6 +80,7 @@ def lagrange_mockcheb_graph():
     plt.ylabel("Average Closing")
 
     plt.bar(lagrange.keys + 1, lagrange.values, color="#1ae583")
+    plt.bar(xplt + 1, yplt_vals, color="#FA491B")
     plt.xticks(xplt_new)
     plt.plot(xplt_smooth + 1, yplt_smooth, color="#E51A7C")
     plt.plot(xplt_new, yplt_vals, 'o', color="#0539f7")
@@ -125,6 +126,7 @@ def lagrange_mockcheb_ibrahimoglu_graph():
     plt.ylabel("Average Closing")
 
     plt.bar(lagrange.keys + 1, lagrange.values, color="#1ae583")
+    plt.bar(xplt + 1, yplt_vals, color="#FA491B")
     plt.xticks(xplt_new)
     plt.plot(xplt_smooth + 1, yplt_smooth, color="#E51A7C")
     plt.plot(xplt_new, yplt_vals, 'o', color="#0539f7")

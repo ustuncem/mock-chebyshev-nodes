@@ -6,10 +6,15 @@ from src.mockChebyshev import MockChebyshev
 from src.Parser import csv_data
 
 xplt = {
-    10: 42,
-    20: 170,
-    50: 1020,
-    100: 4099
+    21: 169,
+    31: 379,
+    41: 667,
+    51: 1035,
+    61: 1487,
+    71: 2015,
+    81: 2625,
+    91: 3325,
+    101: 4099,
 }
 
 yplt_boyd = []
@@ -35,8 +40,10 @@ plt.title("Performance Difference")
 plt.xlabel("Degree")
 plt.ylabel("Time Took")
 
-plt.xticks(list(xplt.keys()))
-plt.plot(list(xplt.keys()), yplt_boyd, color="#E51A7C")
-plt.plot(list(xplt.keys()), yplt_ibrahimoglu, color="#0539f7")
+plt.xticks([i - 1 for i in list(xplt.keys())])
+plt.plot([i - 1 for i in list(xplt.keys())], yplt_boyd, color="#E51A7C", label="Boyd's Algorithm")
+plt.plot([i - 1 for i in list(xplt.keys())], yplt_ibrahimoglu, color="#0539f7", label="İbrahimoğlu's Algorithm")
+
+plt.legend(loc="upper left")
 
 plt.show()
